@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Spare Time Touring</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
+    <link href="//cdn.rawgit.com/indrimuska/angular-moment-picker/master/dist/angular-moment-picker.min.css"
+          rel="stylesheet">
+    <!--<link rel="shortcut icon" type="image/png" href="assets/favicon.png"/>-->
+</head>
+<body ng-app="SpareTimeTouring" ng-cloak>
+<div class="main-container text-center" ng-controller="SpareTimeTouringController" ng-cloak>
+    <nav class="nav-bar">
+        <div class="links-container">
+            <md-tooltip md-direction="bottom">View on Github</md-tooltip>
+            <a ng-href="https://github.com/Gullumbroso/FakeNewsDetector" target="_blank">
+                <img src="assets/github_button.png"/>
+            </a>
+        </div>
+    </nav>
+    <div>
+        <!--<img width="220" src="assets/fake_news_logo.png">-->
+        <h1 style="text-align: center">Spare Time Touring</h1>
+    </div>
+    <h4 style="color: gray; margin-top: 20px">
+        Find places worth visiting in your spare time!
+    </h4>
+    <div style="margin-top: 40px" ng-switch on="(status == 'awaiting' || status == 'loading')">
+        <form ng-submit="go($event)" ng-switch-when="true">
+            <div>
+                <div class="input-container">
+                    <md-input-container md-no-float class="inline-block ">
+                        <input id="curLoc" ng-model="query.start" placeholder="What is your location? (coordinates)"
+                               googleplace>
+                    </md-input-container>
+                </div>
+                <div class="input-container">
+                    <md-input-container md-no-float class="inline-block ">
+                        <input id="dest" ng-model="query.destination"
+                               placeholder="Where do you need to be? (coordinates)"
+                               googleplace>
+                    </md-input-container>
+                </div>
+                <div class="input-container">
+                    <md-input-container md-no-float class="inline-block ">
+                        <div class="input-group input-group-custom"
+                             moment-picker="ctrl.timepicker"
+                             format="HH:mm:ss">
+                            <input
+                                    placeholder="When?"
+                                    ng-model="ctrl.timepicker"
+                                    ng-model-options="{ updateOn: 'blur' }">
+                        </div>
+                    </md-input-container>
+                </div>
+                <div style="min-height: 30px;" layout="row" layout-sm="column" layout-align="space-around">
+                    <div ng-show="status == 'loading'">
+                        <md-progress-circular md-mode="indeterminate"
+                                              md-diameter="30"
+                                              class="progress-circle">
+                        </md-progress-circular>
+                    </div>
+
+                </div>
+                <md-button type="submit" class="md-raised md-primary go">
+                    {{goTitle}}
+                </md-button>
+            </div>
+        </form>
+        <div class="results" ng-switch-default>
+            <div class="answer" ng-class="{'show-in-delay': presentResults}">
+                <div class="text-center">
+                    <img class="result-icon" src={{resultIcon}}>
+                </div>
+                <h3 style="font-weight: 600">
+                    {{answer}}
+                </h3>
+            </div>
+            <div style="margin-top: 20px">
+                <md-button ng-click="tryAgain($event)" class="md-raised md-primary go">
+                    {{tryAgainTitle}}
+                </md-button>
+            </div>
+
+            <div class="article-contents">
+                <h3>
+                    Your route:
+                </h3>
+                <div ng-repeat="obj in route">
+                    <p>
+                        head to <b>{{obj.venue}}</b> for {{obj.duration}} hours,
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        and then go to <b>{{query.destination.split(',')[0]}}</b>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDk8bfPE0MQjmfSss2kEjK6RREetSKYigE&libraries=places"></script>
+<script src="//cdn.rawgit.com/indrimuska/angular-moment-picker/master/dist/angular-moment-picker.min.js"></script>
+
+<script type="text/javascript" src="app/app.js"></script>
+
+</body>
+</html>

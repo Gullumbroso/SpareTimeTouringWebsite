@@ -1,0 +1,130 @@
+html, body {
+    font-family: 'Roboto', sans-serif;
+    background: white;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.main-container {
+    padding: 20px;
+}
+
+.nav-bar {
+    height: 64px;
+}
+
+.links-container {
+    float: right;
+}
+
+.links-container a img {
+    height: 50px;
+    transition: all ease-out 0.2s;
+}
+
+.links-container a img:hover {
+    opacity: 0.6;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.input-container {
+    margin-top: 6px;
+    position: relative;
+}
+
+.input-container span {
+    position: relative;
+    top: -11px;
+}
+
+.logo {
+    margin: 10px 0 50px;
+}
+
+h3 {
+    font-size: 1.8em;
+    font-weight: 900;
+    line-height: 1.5em;
+}
+
+md-input-container {
+    width: 100%;
+    max-width: 480px;
+    font-size: 20px;
+    /*margin: 0 10px;*/
+}
+
+.input-group-custom {
+    width: 100%;
+    max-width: 480px;
+    font-size: 20px;
+    height: 30px;
+}
+
+.results {
+    margin-top: 40px;
+    max-height: 2000px;
+    opacity: 1;
+    transition: all ease-out 0.4s;
+    overflow: hidden;
+}
+
+.results p {
+    font-size: 1.2em;
+}
+
+.results.ng-hide {
+    opacity: 0;
+    max-height: 0;
+}
+
+.results .show-in-delay {
+    opacity: 1.0;
+    transition: all ease-out 0.4s;
+}
+
+.result-path ul li span {
+    color: #3F51B5;
+}
+
+.result-path ul li span.result-even {
+    color: #2196F3;
+}
+
+.result-icon {
+    width: 60px;
+}
+
+.progress-circle {
+    margin: auto;
+}
+
+.go {
+    font-size: 20px;
+    font-weight: 900;
+    padding: 8px 16px;
+    background: rgb(227, 55, 52);
+    margin-top: 15px;
+    transition: all ease-out 0.4s;
+}
+
+.article-contents {
+    margin: 50px auto 20px;
+    max-width: 600px;
+    text-align: left;
+}
+
+@media (min-width: 720px ) {
+    .main-container {
+        padding: 20px;
+    }
+
+    .nav-bar {
+        padding: 0 30px;
+    }
+}
